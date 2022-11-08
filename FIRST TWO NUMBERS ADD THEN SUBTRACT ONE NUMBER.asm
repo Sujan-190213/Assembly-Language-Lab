@@ -1,0 +1,174 @@
+;SUM OF FIRST TWO DIGIT IS NOT EXCEED 10             
+
+;7+2-3 = 6
+
+.MODEL SMALL
+.DATA
+    
+    MSG1 DB "ENTER NUMBER 1 : $"
+    MSG2 DB "ENTER NUMBER 2 : $"
+    MSG3 DB "ENTER NUMBER 3 : $" 
+    MSG4 DB "ADDITION OF FIRST TWO NUMBER IS : $" 
+    MSG5 DB "FINAL RESULT IS : $"
+    
+    A DB 0
+    B DB 0
+    C DB 0
+    SUM DB 0
+    TOTAL DB 0
+    
+.CODE
+MAIN PROC
+    
+    MOV AX,@DATA
+    MOV DS,AX 
+    
+    
+    
+    ;PRINT FIRST MESSEGE 
+
+    MOV DX,OFFSET MSG1
+    MOV AH,9
+    INT 21H  
+    
+    ;INPUT 1
+    
+    MOV AH,1
+    INT 21H
+    SUB AL,48
+    MOV A,AL 
+    
+    ;PRINT NEWLINE
+
+    MOV DL,10
+    MOV AH,2
+    INT 21H 
+    
+    ;CARRIAGE RETURN
+
+    MOV DL,13
+    MOV AH,2
+    INT 21H            
+               
+               
+               
+              
+    ;PRINT SECOND MESSEGE 
+
+    MOV DX,OFFSET MSG2
+    MOV AH,9
+    INT 21H   
+             
+    ;INPUT 2
+    
+    MOV AH,1
+    INT 21H
+    SUB AL,48
+    MOV B,AL 
+    
+    ;PRINT NEWLINE
+
+    MOV DL,10
+    MOV AH,2
+    INT 21H 
+    
+    ;CARRIAGE RETURN
+
+    MOV DL,13
+    MOV AH,2
+    INT 21H  
+    
+    
+    
+    ;PRINT THIRD MESSEGE 
+
+    MOV DX,OFFSET MSG3
+    MOV AH,9
+    INT 21H  
+    
+    
+    ;INPUT 3
+    
+    MOV AH,1
+    INT 21H
+    SUB AL,48
+    MOV C,AL
+    
+    ;PRINT NEWLINE
+
+    MOV DL,10
+    MOV AH,2
+    INT 21H 
+    
+    ;CARRIAGE RETURN
+
+    MOV DL,13
+    MOV AH,2
+    INT 21H  
+                     
+                     
+    ;PRINT FOURTH MESSEGE 
+
+    MOV DX,OFFSET MSG4
+    MOV AH,9
+    INT 21H  
+    
+    
+                                     
+    ;ADDITION
+    
+    MOV DL,A
+    ADD DL,B
+    
+    MOV SUM,DL 
+    
+    ;DISPLAY (SUM)
+    
+    MOV DL,SUM
+    ADD DL,48
+    MOV AH,2
+    INT 21H
+    
+    
+    ;PRINT NEWLINE
+
+    MOV DL,10
+    MOV AH,2
+    INT 21H 
+    
+    ;CARRIAGE RETURN
+
+    MOV DL,13
+    MOV AH,2
+    INT 21H  
+    
+    
+    ;SUBTRUCTION (TOTAL)
+    
+    MOV DL,SUM
+    SUB DL,C
+    
+    MOV TOTAL,DL
+                
+    
+    ;PRINT FIFTH MESSEGE 
+
+    MOV DX,OFFSET MSG5
+    MOV AH,9
+    INT 21H              
+                
+    ;DISPLAY  (FINAL)
+    
+    MOV DL,TOTAL
+    ADD DL,48
+    MOV AH,2
+    INT 21H
+    
+    
+    
+    MOV AX,4C00H
+    INT 21H           ;DOS
+    
+    MAIN ENDP
+    
+END MAIN    

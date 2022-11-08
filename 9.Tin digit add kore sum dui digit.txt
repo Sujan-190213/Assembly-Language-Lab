@@ -1,0 +1,52 @@
+
+
+.MODEL SMALL
+.DATA
+
+    A DW 7
+    B DW 6
+    C DB 5
+    SUM DW ? 
+    REM1 DB ? 
+    REM2 DB ?
+    
+.CODE
+MAIN PROC
+    
+    MOV AX,@DATA
+    MOV DS,AX
+    
+    MOV AX,A
+    ADD AX,B
+    MOV SUM,AX
+    
+    
+    MOV AH,0         ;CLEAR AH    
+    MOV BL,10
+    DIV BL           ;RESULT IN AL (1) [ 1 IN DECIMAL ]
+    MOV REM1,AH      ;REMAINDER IN AH (3) [ 3 IN DECIMAL ]
+        
+        
+    MOV BH,REM1
+    ADD BH,C
+    
+    MOV REM2,BH       ;REMAINDER IN BH (8) [ 8 IN DECIMAL ]
+    
+    
+    MOV DL,AL
+    ADD DL,48         ;DL (1) + 48 = 49 >>  1 IN ASCII
+    MOV AH,2
+    INT 21H
+    
+    MOV DL,REM2
+    ADD DL,48         ;DL (8) + 48 = 56 >>  8 IN ASCII
+    MOV AH,2
+    INT 21H
+    
+    
+    MOV AX,4C00H
+    INT 21H           ;DOS
+    
+    MAIN ENDP
+    
+END MAIN    

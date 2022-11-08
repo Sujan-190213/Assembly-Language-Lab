@@ -1,0 +1,33 @@
+.MODEL SMALL
+.DATA
+  MSG1 DB 'SUJAN DHALI $'
+  MSG2 DB 'KHULNA UNIVERSITY,CSE$'
+.CODE
+MAIN PROC
+     MOV AX,@DATA
+     MOV DS,AX       ; DATA SEGMENT INITIALIZATION
+     
+     LEA DX,MSG1
+     MOV AH,9        ;PRINT FIRST MESSEGE
+     INT 21H
+     
+     MOV AH,2
+     MOV DL,10      ;PRINT NEWLINE
+     INT 21H
+     
+     MOV AH,2
+     MOV DL,13      ;CARRIAGE RETURN
+     INT 21H
+     
+     LEA DX,MSG2    ;PRINT SECOND MESSEGE
+     MOV AH,9
+     INT 21H
+    
+    
+    
+    MOV AH,4CH         ; RETURN ACCESS TO DOS
+    INT 21H
+    
+    MAIN ENDP
+
+END MAIN
